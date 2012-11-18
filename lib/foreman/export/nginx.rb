@@ -1,6 +1,6 @@
 module Foreman
   module Export
-    class Nginx
+    class Nginx < Foreman::Export::Base
       def export
         super
 
