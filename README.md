@@ -1,6 +1,6 @@
 # Foreman::Export::Nginx
 
-TODO: Write a gem description
+Export Nginx configuration files using Foreman
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`nginx-foreman export nginx [additonal options]`
 
 ## Contributing
 

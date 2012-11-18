@@ -7,10 +7,10 @@ Gem::Specification.new do |gem|
   gem.name          = "foreman-export-nginx"
   gem.version       = Foreman::Export::Nginx::VERSION
   gem.authors       = ["Pete Keen"]
-  gem.email         = ["peter.keen@bugsplat.info"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.email         = ["pete@bugsplat.info"]
+  gem.description   = %q{Export Nginx configs using Foreman}
+  gem.summary       = %q{Export Nginx confguration files using Foreman}
+  gem.homepage      = "https://github.com/peterkeen/foreman-export-nginx"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
