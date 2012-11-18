@@ -6,7 +6,6 @@ upstream <%= app %> {
 
 server {
   access_log <%= log %>/nginx-access.log combined buffer=32k;
-  error_log <%= log %>/nginx-error.log stderr;
 
   listen 80;
   server_name <%= app %>.<%= ENV['BASE_DOMAIN'] %>;
