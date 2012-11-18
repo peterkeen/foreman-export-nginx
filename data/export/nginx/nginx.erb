@@ -1,0 +1,29 @@
+upstream <%= app %> {
+  <% ports.each do |port| %>
+  server localhost:<%= port %> fail_timeout=0;
+  <% end %>
+}
+
+server {
+  listen 80;
+  server_name <%= app %>.<%= ENV['BASE_DOMAIN'] %>;
+  <% ENV['ADDITIONAL_DOMAINS'].split(',').each do |domain| %>
+  server_name <%= domain %>;
+  <% end %>
+
+  root <%= ENV['ROOT_PATH'] %>;
+
+  try_files $uri/index.html $uri.html $uri @app;
+
+  location @app {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+
+    proxy_pass http://<%= app %>;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  location = /500.html {
+    root <%= ENV['ROOT_PATH'] %>;
+  }
+}
