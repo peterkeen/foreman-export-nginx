@@ -5,7 +5,7 @@ require 'foreman-export-nginx/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "foreman-export-nginx"
-  gem.version       = Foreman::Export::Nginx::VERSION
+  gem.version       = '0.0.1'
   gem.authors       = ["Pete Keen"]
   gem.email         = ["pete@bugsplat.info"]
   gem.description   = %q{Export Nginx configs using Foreman}
@@ -16,4 +16,6 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+
+  gem.add_dependency("foreman")
 end
