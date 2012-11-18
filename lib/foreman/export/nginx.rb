@@ -1,4 +1,4 @@
-require 'foreman'
+require 'foreman/export'
 
 module Foreman
   module Export
@@ -10,13 +10,14 @@ module Foreman
           next unless name == 'web'
           env = engine.env.merge("PORT" => port) # Merge our port into our services ENV
 
-
           ports = []
           1.upto(engine.formation[name]) do |num|
             ports << engine.port_for(process, num)
           end
 
-          write_template("nginx/nginx.erb", "#{app}.conf", binding)
+          content = File.read(File.expand_path("../../../../data/export/nginx/nginx.erb", __FILE__))
+          result = ERB.new(content, nil, '-').result(binding)
+          write_file "#{app}.conf", result
         end
       end
     end

@@ -5,13 +5,16 @@ upstream <%= app %> {
 }
 
 server {
+  access_log <%= log %>/nginx-access.log combined buffer=32k;
+  error_log <%= log %>/nginx-error.log stderr;
+
   listen 80;
   server_name <%= app %>.<%= ENV['BASE_DOMAIN'] %>;
-  <% ENV['ADDITIONAL_DOMAINS'].split(',').each do |domain| %>
+  <% (ENV['ADDITIONAL_DOMAINS'] || '').split(',').each do |domain| %>
   server_name <%= domain %>;
   <% end %>
 
-  root <%= ENV['ROOT_PATH'] %>;
+  root <%= engine.root %>/public;
 
   try_files $uri/index.html $uri.html $uri @app;
 
@@ -24,6 +27,6 @@ server {
 
   error_page 500 502 503 504 /500.html;
   location = /500.html {
-    root <%= ENV['ROOT_PATH'] %>;
+    root <%= engine.root %>/public;
   }
 }
