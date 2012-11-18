@@ -1,3 +1,5 @@
+require 'foreman'
+
 module Foreman
   module Export
     class Nginx < Foreman::Export::Base
