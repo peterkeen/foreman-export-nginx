@@ -5,13 +5,11 @@ upstream <%= app %> {
 }
 
 server {
-  access_log <%= log %>/nginx-access.log combined buffer=0k;
+  access_log <%= log %>/<%= app %>-nginx-access.log combined buffer=0k;
+  error_log  <%= log %>/<%= app %>-nginx-error.log;
 
   listen 80;
-  server_name <%= app %>.<%= ENV['BASE_DOMAIN'] %>;
-  <% (ENV['ADDITIONAL_DOMAINS'] || '').split(',').each do |domain| %>
-  server_name <%= domain %>;
-  <% end %>
+  server_name <%= app %>.<%= ENV['BASE_DOMAIN'] %> <%= (ENV['ADDITIONAL_DOMAINS'] || '').split(',').join(' ') %>;
 
   root <%= engine.root %>/public;
 
