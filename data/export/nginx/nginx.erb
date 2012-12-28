@@ -1,3 +1,10 @@
+gzip             on;
+gzip_min_length  1000;
+gzip_proxied     expired no-cache no-store private auth;
+gzip_disable     "MSIE [1-6]\."
+gzip_types       text/css text/javascript application/x-javascript;
+sendfile on;
+
 upstream <%= app %> {
   <% ports.each do |port| %>
   server localhost:<%= port %> fail_timeout=0;
@@ -13,11 +20,8 @@ server {
 
   root <%= engine.root %>/public;
 
-  gzip             on;
-  gzip_min_length  1000;
-  gzip_proxied     expired no-cache no-store private auth;
-  gzip_disable     "MSIE [1-6]\."
-  gzip_types       text/css text/javascript application/x-javascript;
+
+
 
   try_files $uri/index.html $uri.html $uri @app;
 
