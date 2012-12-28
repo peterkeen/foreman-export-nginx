@@ -13,11 +13,15 @@ server {
 
   root <%= engine.root %>/public;
 
+  <% if ENV['GZIP_COMPRESSION'] %>
   gzip             on;
   gzip_min_length  1000;
   gzip_proxied     expired no-cache no-store private auth;
-  gzip_types       text/javascript text/css;
+  <% if ENV['GZIP_COMPRESSION_TYPES' %>
+  gzip_types       <%= ENV['GZIP_COMPRESSION_TYPES'] %>;
+  <% end %>
   gzip_disable     "MSIE [1-6]\."
+  <% end %>
 
   try_files $uri/index.html $uri.html $uri @app;
 
