@@ -17,7 +17,7 @@ server {
   gzip             on;
   gzip_min_length  1000;
   gzip_proxied     expired no-cache no-store private auth;
-  <% if ENV['GZIP_COMPRESSION_TYPES' %>
+  <% if ENV['GZIP_COMPRESSION_TYPES'] %>
   gzip_types       <%= ENV['GZIP_COMPRESSION_TYPES'] %>;
   <% end %>
   gzip_disable     "MSIE [1-6]\."
