@@ -8,7 +8,6 @@ module Foreman
 
         engine.each_process do |name, process|
           next unless name == 'web'
-          env = engine.env.merge("PORT" => port) # Merge our port into our services ENV
 
           ports = []
           1.upto(engine.formation[name]) do |num|
