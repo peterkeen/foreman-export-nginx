@@ -11,13 +11,17 @@ server {
   listen 80;
   server_name <%= app %>.<%= ENV['BASE_DOMAIN'] %> <%= (ENV['ADDITIONAL_DOMAINS'] || '').split(',').join(' ') %>;
 
+  <% if ENV['USE_SSL'] %>
+  listen 443 ssl;
+
+  <% if ENV['SSL_CERT_PATH'] && ENV['SSL_KEY_PATH'] %>
+  ssl_certificate <%= ENV['SSL_CERT_PATH'] %>;
+  ssl_certificate_key <%= ENV['SSL_KEY_PATH'] %>;
+  <% end %>
+  
+  <% end %>
+
   root <%= engine.root %>/public;
-
-
-  gzip_proxied     expired no-cache no-store private auth;
-  gzip_disable     "MSIE [1-6]\."
-  gzip_types       text/css text/javascript application/x-javascript;
-
 
   try_files $uri/index.html $uri.html $uri @app;
 
