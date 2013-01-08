@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "foreman-export-nginx"
-  gem.version       = '0.0.13'
+  gem.version       = '0.0.14'
   gem.authors       = ["Pete Keen"]
   gem.email         = ["pete@bugsplat.info"]
   gem.description   = %q{Export Nginx configs using Foreman}
