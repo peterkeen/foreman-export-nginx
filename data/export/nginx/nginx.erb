@@ -11,7 +11,7 @@ server {
   listen 80;
   server_name <%= app %>.<%= ENV['BASE_DOMAIN'] %> <%= (ENV['ADDITIONAL_DOMAINS'] || '').split(',').join(' ') %>;
 
-  <% if ENV['USE_SSL'] %>
+  <% if ENV['USE_SSL'] != '' %>
   listen 443 ssl;
 
   <% if ENV['SSL_CERT_PATH'] != '' && ENV['SSL_KEY_PATH'] != '' %>
@@ -34,6 +34,11 @@ server {
 
   error_page 500 502 503 504 /500.html;
   location = /500.html {
+    root <%= engine.root %>/public;
+  }
+
+  error_page 404 /404.html
+  location = /404.html {
     root <%= engine.root %>/public;
   }
 }
