@@ -31,14 +31,4 @@ server {
 
     proxy_pass http://<%= app %>;
   }
-
-  error_page 500 502 503 504 /500.html;
-  location = /500.html {
-    root <%= engine.root %>/public;
-  }
-
-  error_page 404 /404.html;
-  location = /404.html {
-    root <%= engine.root %>/public;
-  }
 }
