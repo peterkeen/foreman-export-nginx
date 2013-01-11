@@ -9,17 +9,17 @@ server {
   error_log  <%= log %>/<%= app %>-nginx-error.log;
 
   listen 80;
-  server_name <%= app %>.<%= ENV['BASE_DOMAIN'] %> <%= (ENV['ADDITIONAL_DOMAINS'] || '').split(',').join(' ') %>;
+  server_name <%= app %>.<%= base_domain %> <%= additional_domains %>;
 
-  <% if ENV['USE_SSL'] != '' %>
+  <% if use_ssl %>
   listen 443 ssl;
 
-  <% if ENV['SSL_CERT_PATH'] != '' && ENV['SSL_KEY_PATH'] != '' %>
-  ssl_certificate <%= ENV['SSL_CERT_PATH'] %>;
-  ssl_certificate_key <%= ENV['SSL_KEY_PATH'] %>;
+  <% if ssl_cert_path && ssl_key_path %>
+  ssl_certificate <%= ssl_cert_path %>;
+  ssl_certificate_key <%= ssl_key_path %>;
   <% end %>
 
-  <% if ENV['FORCE_SSL'] != '' %>
+  <% if force_ssl %>
   if ($ssl_protocol = "") {
      rewrite ^   https://$server_name$request_uri? permanent;
   }    
