@@ -38,10 +38,6 @@ server {
     proxy_set_header Host $http_host;
     proxy_redirect off;
 
-    if ($ssl_protocol != "") {
-      proxy_set_header HTTPS "on";
-    }
-
     proxy_pass http://<%= app %>;
   }
 }
