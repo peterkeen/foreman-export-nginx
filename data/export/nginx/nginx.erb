@@ -9,7 +9,7 @@ server {
   error_log  <%= log %>/<%= app %>-nginx-error.log;
 
   listen 80;
-  server_name <%= app %>.<%= base_domain %> <%= additional_domains %>;
+  server_name <%= additional_domains %> <%= app %>.<%= base_domain %>;
 
   <% if use_ssl %>
   listen 443 ssl;
