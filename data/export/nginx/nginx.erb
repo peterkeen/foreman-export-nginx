@@ -18,6 +18,12 @@ server {
   ssl_certificate <%= ENV['SSL_CERT_PATH'] %>;
   ssl_certificate_key <%= ENV['SSL_KEY_PATH'] %>;
   <% end %>
+
+  <% if ENV['FORCE_SSL'] != '' %>
+  if ($ssl_protocol = "") {
+     rewrite ^   https://$server_name$request_uri? permanent;
+  }    
+  <% end %>
   
   <% end %>
 
