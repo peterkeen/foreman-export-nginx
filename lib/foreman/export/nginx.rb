@@ -21,6 +21,7 @@ module Foreman
           ssl_cert_path = env_var('SSL_CERT_PATH')
           ssl_key_path  = env_var('SSL_KEY_PATH')
           force_ssl = !!env_var('FORCE_SSL')
+          force_domain = env_var('FORCE_DOMAIN')
 
           ports = []
           1.upto(engine.formation[name]) do |num|

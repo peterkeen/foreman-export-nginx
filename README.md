@@ -28,6 +28,7 @@ There is one requied and several optional environment variables:
 * `SSL_CERT_PATH` path to the certificate to use for ssl. Optional if you've set up a wildcard cert.
 * `SSL_KEY_PATH` path to the certificate key. Required if you specified `SSL_CERT_PATH`.
 * `FORCE_SSL` true to force redirect to SSL
+* `FORCE_DOMAIN` redirect all requests to this domain
 
 ## Contributing
 
