@@ -25,6 +25,7 @@ server {
      rewrite ^https://$server_name$request_uri? permanent;
   }
   <% end %>
+  <% end %>
 
   <% if force_domain %>
   if ( $host != '<%= force_domain %>' ) {
