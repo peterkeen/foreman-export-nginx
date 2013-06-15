@@ -38,6 +38,7 @@ server {
   try_files $uri/index.html $uri.html $uri @app;
 
   location ~* ^.+.(jpg|jpeg|gif|css|png|js|ico|xml)$ {
+    try_files $uri @app;
     add_header Cache-Control public;
     expires max;
   }
