@@ -22,14 +22,14 @@ server {
 
   <% if force_ssl %>
   if ($ssl_protocol = "") {
-     rewrite ^https://$server_name$request_uri? permanent;
+     rewrite ^(.*)$ https://$server_name$request_uri? permanent;
   }
   <% end %>
   <% end %>
 
   <% if force_domain %>
   if ( $host != '<%= force_domain %>' ) {
-    rewrite ^http://<%= force_domain %>$request_uri? permanent;
+    rewrite ^(.*)$ $scheme://<%= force_domain %>$request_uri? permanent;
   }
   <% end %>
 
