@@ -8,9 +8,8 @@ server {
   access_log <%= log %>/<%= app %>-nginx-access.log combined buffer=0k;
   error_log  <%= log %>/<%= app %>-nginx-error.log;
 
-  listen 80;
+  listen 80 <%= default_server ? 'default_server' : '' %>;
   server_name <%= additional_domains %> <%= app %>.<%= base_domain %>;
-
 
   <% if use_ssl %>
   listen 443 ssl;
