@@ -5,7 +5,7 @@ upstream <%= app %> {
 }
 
 server {
-  access_log <%= log %>/<%= app %>-nginx-access.log combined buffer=0k;
+  access_log <%= log %>/<%= app %>-nginx-access.log combined buffer=2k;
   error_log  <%= log %>/<%= app %>-nginx-error.log;
 
   listen 80 <%= default_server ? 'default_server' : '' %>;
