@@ -23,6 +23,7 @@ module Foreman
           force_ssl = !!env_var('FORCE_SSL')
           force_domain = env_var('FORCE_DOMAIN')
           default_server = !!env_var('DEFAULT_SERVER')
+          listen_address = env_var('LISTEN_ADDRESS') || '*'
 
           ports = []
           1.upto(engine.formation[name]) do |num|
