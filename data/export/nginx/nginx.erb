@@ -12,7 +12,7 @@ server {
   server_name <%= additional_domains %> <%= app %>.<%= base_domain %>;
 
   <% if use_ssl %>
-  listen 443 ssl;
+  listen <%= listen_address %>:443 ssl;
 
   <% if ssl_cert_path && ssl_key_path %>
   ssl_certificate <%= ssl_cert_path %>;
